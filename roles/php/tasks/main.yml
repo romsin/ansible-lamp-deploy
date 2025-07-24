@@ -1,0 +1,16 @@
+- name: Install PHP and extensions
+  apt:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - php
+    - libapache2-mod-php
+    - php-mysql
+
+- name: Deploy test PHP file
+  copy:
+    dest: /var/www/html/index.php
+    content: |
+      <?php
+      phpinfo();
+      ?>
