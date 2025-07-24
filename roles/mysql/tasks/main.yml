@@ -1,0 +1,16 @@
+- name: Install MySQL
+  apt:
+    name: mysql-server
+    state: present
+
+- name: Create database
+  mysql_db:
+    name: lamp_db
+    state: present
+
+- name: Create user
+  mysql_user:
+    name: lamp_user
+    password: "{{ mysql_password }}"
+    priv: 'lamp_db.*:ALL'
+    state: present
